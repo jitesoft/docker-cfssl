@@ -12,10 +12,9 @@ build:
     - apk add --no-cache wget grep
     - VERSION=$(wget -qO- https://github.com/keybase/client/releases | grep -oP '(?<=releases\/tag\/)(.*?)(?=\">)' | awk 'NR==1{print $1}')
   script:
-    - TAGS="jitesoft/cfssl:latest ${CI_REGISTRY_IMAGE}:latest quay.io/jitesoft/cfssl:latest"
     - docker build -t ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA} .
-    - helper multitag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA} ${TAGS}
-    - helper multipush ${TAGS}
+    - helper multitag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA} jitesoft/cfssl:latest ${CI_REGISTRY_IMAGE}:latest quay.io/jitesoft/cfssl:latest
+    - helper multipush jitesoft/cfssl:latest ${CI_REGISTRY_IMAGE}:latest quay.io/jitesoft/cfssl:latest
 
 scan:
   extends: .container_scanning
