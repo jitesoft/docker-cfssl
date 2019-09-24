@@ -1,4 +1,4 @@
-# Keybase
+# CFSSL
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/jitesoft/cfssl.svg)](https://cloud.docker.com/u/jitesoft/repository/docker/jitesoft/cfssl)
 [![Back project](https://img.shields.io/badge/Open%20Collective-Tip%20the%20devs!-blue.svg)](https://opencollective.com/jitesoft-open-source)
@@ -8,7 +8,7 @@ This image contains the tools provided by the [CFSSL](https://cfssl.org/) packag
 
 ## Tags
 
-Tags follow the keybase version numbering standard (prefixed with `v`) and the latest version is also tagged `latest`.
+Currently, the latest tag is supplied (which is the master branch of the cfssl github repository).
 
 ### Docker Hub
 
@@ -32,5 +32,5 @@ This image follows the [Jitesoft image label specification 1.0.0](https://gitlab
 
 ## Licenses
 
-This repository and the files therein are released under the [MIT](https://gitlab.com/jitesoft/dockerfiles/keybase/blob/master/LICENSE) license.  
+This repository and the files therein are released under the [MIT](https://gitlab.com/jitesoft/dockerfiles/cfssl/blob/master/LICENSE) license.  
 CFSSL is released under the [BSD 2-Clause "Simplieifed"](https://github.com/cloudflare/cfssl/blob/master/LICENSE) license.
