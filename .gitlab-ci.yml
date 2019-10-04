@@ -14,8 +14,8 @@ build:
   script:
     - TAG_LIST=$(helper "jitesoft/cfssl,${CI_REGISTRY_IMAGE}", "latest")
     - docker buildx build --platform ${PLATFORMS} --progress plain --push ${TAG_LIST} .
-    - docker pull ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}
-    - docker tag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA} quay.io/jitesoft/cfssl:latest
+    - docker pull ${CI_REGISTRY_IMAGE}:latest
+    - docker tag ${CI_REGISTRY_IMAGE}:latest quay.io/jitesoft/cfssl:latest
     - docker push quay.io/jitesoft/cfssl:latest
   tags:
     - arm64
