@@ -1,6 +1,9 @@
 include:
   - https://gitlab.com/jitesoft/gitlab-ci-lib/raw/master/container_scan-v2.yml
 
+variables:
+  PLATFORMS: "linux/amd64,linux/arm64"
+
 stages:
   - build
   - scan
@@ -9,9 +12,15 @@ build:
   stage: build
   image: registry.gitlab.com/jitesoft/dockerfiles/misc:latest
   script:
-    - docker build -t ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA} .
-    - helper multitag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA} jitesoft/cfssl:latest ${CI_REGISTRY_IMAGE}:latest quay.io/jitesoft/cfssl:latest
-    - helper multipush jitesoft/cfssl:latest ${CI_REGISTRY_IMAGE}:latest quay.io/jitesoft/cfssl:latest
+    - TAG_LIST=$(helper "jitesoft/cfssl,${CI_REGISTRY_IMAGE}", "latest")
+    - docker buildx build --platform ${PLATFORMS} --progress plain --push ${TAG_LIST} .
+    - docker pull ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}
+    - docker tag ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA} quay.io/jitesoft/cfssl:latest
+    - docker push quay.io/jitesoft/cfssl:latest
+  tags:
+    - arm64
+    - amd64
+    - jitesoft
 
 scan:
   extends: .container_scanning
