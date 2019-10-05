@@ -12,11 +12,14 @@ build:
   stage: build
   image: registry.gitlab.com/jitesoft/dockerfiles/misc:latest
   script:
-    - TAG_LIST=$(helper "jitesoft/cfssl,${CI_REGISTRY_IMAGE}", "latest")
+    - HASH=$(wget -qO- https://github.com/cloudflare/cfssl | tr -d '\n' | tr -d ' ' | grep -oP '(?<=commit-tease-sha).*[>]([\da-f]+)(?=<)' | grep -oP '(?<=\>)([\da-f]+)')
+    - TAG_LIST=$(helper "jitesoft/cfssl,${CI_REGISTRY_IMAGE}", "latest,${HASH}")
     - docker buildx build --platform ${PLATFORMS} --progress plain --push ${TAG_LIST} .
     - docker pull ${CI_REGISTRY_IMAGE}:latest
     - docker tag ${CI_REGISTRY_IMAGE}:latest quay.io/jitesoft/cfssl:latest
+    - docker tag ${CI_REGISTRY_IMAGE}:latest quay.io/jitesoft/cfssl:${HASH}
     - docker push quay.io/jitesoft/cfssl:latest
+    - docker push  quay.io/jitesoft/cfssl:${HASH}
   tags:
     - arm64
     - amd64
