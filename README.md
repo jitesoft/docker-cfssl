@@ -1,6 +1,6 @@
 # CFSSL
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/jitesoft/cfssl.svg)](https://cloud.docker.com/u/jitesoft/repository/docker/jitesoft/cfssl)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jitesoft/cfssl.svg)](https://hub.docker.com/r/jitesoft/cfssl)
 [![Back project](https://img.shields.io/badge/Open%20Collective-Tip%20the%20devs!-blue.svg)](https://opencollective.com/jitesoft-open-source)
 [![pipeline status](https://gitlab.com/jitesoft/dockerfiles/cfssl/badges/master/pipeline.svg)](https://gitlab.com/jitesoft/dockerfiles/cfssl/commits/master)
 
@@ -8,7 +8,7 @@ This image contains the tools provided by the [CFSSL](https://cfssl.org/) packag
 
 ## Tags
 
-Currently, the latest tag is supplied (which is the master branch of the cfssl github repository).
+Tags are based on the commit hash in the git [repository](https://github.com/cloudflare/cfssl), `latest` is the latest build.
 
 ### Docker Hub
 
