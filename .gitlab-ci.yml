@@ -21,9 +21,9 @@ build:
     - docker push quay.io/jitesoft/cfssl:latest
     - docker push  quay.io/jitesoft/cfssl:${HASH}
   tags:
-    - arm64
-    - amd64
+    - buildx
     - jitesoft
+    - protected
 
 scan:
   extends: .container_scanning
