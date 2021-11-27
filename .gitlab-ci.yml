@@ -96,7 +96,7 @@ containerize:
     - job: build
       artifacts: true
   script:
-    - TAG_LIST=$(helper "${CI_REGISTRY_IMAGE},ghcr.io/jitesoft/cfssl,jitesoft/cfssl" "latest,${VERSION}")
+    - TAGS=$(helper "${CI_REGISTRY_IMAGE},ghcr.io/jitesoft/cfssl,jitesoft/cfssl" "latest,${VERSION}")
     - docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7,linux/ppc64le,linux/s390x --progress plain --push ${TAGS} --build-arg VERSION=${VERSION} .
   tags: [ buildx, jitesoft, protected ]
 
