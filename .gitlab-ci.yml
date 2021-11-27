@@ -15,6 +15,12 @@ stages:
   - scan
 
 check:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+      when: always
+    - when: never
   stage: build
   image: registry.gitlab.com/jitesoft/dockerfiles/misc:latest
   script:
