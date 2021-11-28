@@ -73,12 +73,14 @@ build:
       - { GOARCH: "s390x", GIT_STRATEGY: "none" }
       - { GOARCH: "arm", GO_ARM: "v7", GIT_STRATEGY: "none"}
   script:
+    - apk add --no-cache file
     - tar -xzf v${VERSION}.tar.gz
     - cd cfssl-${VERSION}
     - go build -ldflags="-s -w -X github.com/cloudflare/cfssl/cli/version.version=${VERSION}" -o bin/ ./cmd/...
     - cd ..
     - mkdir -p bin/${ARCH}
-    - mv cfssl-${VERSION}/bin/* bin/${ARCH}
+    - mv cfssl-${VERSION}/bin/* bin/${GOARCH}/
+    - file bin/${GOARCH}/cfssl
   artifacts:
     paths:
       - bin
