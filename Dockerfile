@@ -13,6 +13,7 @@ LABEL maintainer="Johannes Tegnér <johannes@jitesoft.com>" \
 ARG TARGETARCH
 RUN --mount=type=bind,source=./bin,target=/tmp \
     addgroup -g 1000 cfssl \
+ && cp /tmp/entrypoint /usr/local/bin/ \
  && adduser -u 1000 -G cfssl -s /bin/ash -D cfssl \
  && cp /tmp/${TARGETARCH}/* /usr/local/bin/ \
  && chmod +x /usr/local/bin/*
