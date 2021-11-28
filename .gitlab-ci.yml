@@ -78,7 +78,7 @@ build:
     - cd cfssl-${VERSION}
     - go build -ldflags="-s -w -X github.com/cloudflare/cfssl/cli/version.version=${VERSION}" -o bin/ ./cmd/...
     - cd ..
-    - mkdir -p bin/${ARCH}
+    - mkdir -p bin/${GOARCH}
     - mv cfssl-${VERSION}/bin/* bin/${GOARCH}/
     - file bin/${GOARCH}/cfssl
   artifacts:
